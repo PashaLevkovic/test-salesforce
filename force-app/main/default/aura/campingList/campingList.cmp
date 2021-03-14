@@ -1,0 +1,14 @@
+<aura:component description="campingList">
+    <aura:attribute name="items" type="Camping_Item__c[]"/>
+    <aura:attribute name="newItem" type="Camping_Item__c" default="{'sobjectType' : 'Camping_Item__c', 'Name' : '',
+                                                                             'Price__c' : 0, 'Quantity__c' : 0}"/>
+
+    <aura:iteration items="{!v.items}" var="item">
+        <c:campingListItem item="{!item}"/>
+    </aura:iteration>
+    <lightning:input label="Name" value="{!v.newItem.Name}"/>
+    <lightning:input label="Price" type="number" formatter="currency" value="{!v.newItem.Price__c}"/>
+    <lightning:input label="Quantity" type="number" formatter="decimal" value="{!v.newItem.Quantity__c}"/>
+    <lightning:input label="Packed" type="toggle" checked="{!v.newItem.Packed__c}"/>
+    <lightning:button label="Create Item"/>
+</aura:component>

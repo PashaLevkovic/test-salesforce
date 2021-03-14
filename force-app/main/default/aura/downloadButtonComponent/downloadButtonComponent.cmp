@@ -1,0 +1,12 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <aura:handler name="onload" action="{!c.removeComponent}" event="c:frameLoaded"/>
+
+    <lightning:card title="button">
+        <lightning:button label="Download" onclick="{!c.getComponent}"/>
+
+        <div aura:id="cmpBody">
+                {!v.body}
+        </div>
+
+    </lightning:card>
+</aura:component>

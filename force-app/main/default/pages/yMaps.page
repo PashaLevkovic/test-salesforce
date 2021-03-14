@@ -1,0 +1,103 @@
+<apex:page controller="MapController">
+
+    <head>
+        <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&coordorder=longlat" type="text/javascript">
+        </script>
+        <script type="text/javascript">
+
+        var districts = JSON.parse('{!districts}');
+        console.log(districts);
+
+        ymaps.ready(init);
+
+        function init(){
+            var myMap = new ymaps.Map("map", {
+                center: [33, 53],
+                zoom: 6
+            });
+
+            for (var i = 0; i < districts.length; i++) {
+                console.log()
+                var coordinates = "[" + districts[i].Boundary_Coordinates__c + "]";
+                var myGeoObject = new ymaps.GeoObject({
+                geometry: {
+                    type: "Polygon",
+                    coordinates: [
+                        JSON.parse(coordinates)
+                    ],
+                    fillRule: "nonZero"
+                },
+                properties:{
+                    balloonContent: districts[i].Name
+                }
+                }, {
+                    fillColor: fillColor(districts[i]),
+                    strokeColor: '#0000FF',
+                    strokeWidth: 1,
+                });
+                myMap.geoObjects.add(myGeoObject);
+            }
+        }
+
+        function fillColor(district){
+            if (district.Region__r == null){
+                return "#ffff7f80";
+            }
+            else if (district.Region__r.Name == "Брестская область"){
+                return "#0000FF80";
+            }
+            else if (district.Region__r.Name == "Барановичская область"){
+                return "#ff000080";
+            }
+            else if (district.Region__r.Name == "Пинская область"){
+                return "#00ff0080";
+            }
+            else if (district.Region__r.Name == "Бобруйская область"){
+                return "#ff00ff80";
+            }
+            else if (district.Region__r.Name == "Мозырская область"){
+                return "#00ffff80";
+            }
+            else if (district.Region__r.Name == "Гомельская область"){
+                return "#7f000080";
+            }
+            else if (district.Region__r.Name == "Гродненская область"){
+                return "#007f0080"
+            }
+            else if (district.Region__r.Name == "Лидская область"){
+                return "#00007f80"
+            }
+            else if (district.Region__r.Name == "Полоцкая область"){
+                return "#007f7f80"
+            }
+            else if (district.Region__r.Name == "Витебская область"){
+                return "#7f007f80"
+            }
+            else if (district.Region__r.Name == "Оршанская область"){
+                return "#7f7f0080"
+            }
+            else if (district.Region__r.Name == "Могилевская область"){
+                return "#ff7f7f80"
+            }
+            else if (district.Region__r.Name == "Молодеченская область"){
+                return "#7fff7f80"
+            }
+            else if (district.Region__r.Name == "Борисовская область"){
+                return "#7f7fff80"
+            }
+            else if (district.Region__r.Name == "Солигорская область"){
+                return "#7fffff80"
+            }
+            else if (district.Region__r.Name == "Минская область"){
+                return "#ffff0080"
+            }
+        }
+
+        </script>
+    </head>
+
+    <body>
+        <div id="map" style="width: 100%; height: 800px"></div>
+    </body>
+
+</apex:page>

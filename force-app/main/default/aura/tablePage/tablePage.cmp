@@ -1,0 +1,60 @@
+<aura:component implements="flexipage:availableForAllPageTypes" controller="TablePageController">
+    <aura:attribute name="regions" type="TablePageController.WrapperClass[]"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <lightning:button name="runFlow" label="runFlwo" variant="brand" onclick="{!c.runFlow}"/>
+    <lightning:flow aura:id="flowData"/>
+    <lightning:card title="Regions">
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+            <thead>
+            <tr class="slds-text-title_caps">
+                <th scope="col">
+                    <div class="slds-truncate" title="Region Name" onclick="{!c.sortByName}">Region Name</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Number Of Districts">Number Of Districts</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Region Population">Region Population</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Region Area">Region Area</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="City">City</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="City Population">City Population</div>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <aura:iteration items="{!v.regions}" var="region">
+                <tr>
+                    <th scope="row">
+                        <div class="slds-truncate">{!region.city.Region__r.Name}</div>
+                    </th>
+                    <td>
+                        <div class="slds-truncate">{!region.numberOfDistricts}</div>
+                    </td>
+                    <td>
+                        <div class="slds-truncate"><ui:outputNumber value="{!region.city.Region__r.Population__c}" format="###,###,###"/> </div>
+                    </td>
+                    <td>
+                        <div class="slds-truncate"><ui:outputNumber value="{!region.city.Region__r.Area__c}" format="###,###,###"/></div>
+                    </td>
+                    <td>
+                        <div class="slds-truncate">{!region.city.Name}</div>
+                    </td>
+                    <td>
+                        <div class="slds-truncate"><ui:outputNumber value="{!region.city.Population__c}" format="###,###,###"/></div>
+                    </td>
+                </tr>
+            </aura:iteration>
+            </tbody>
+        </table>
+
+    </lightning:card>
+
+
+</aura:component>

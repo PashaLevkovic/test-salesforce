@@ -1,0 +1,10 @@
+<aura:component >
+    <aura:attribute name="url" type="String" default="https://lightninglevkovicbsu-dev-ed.lightning.force.com/sfc/servlet.shepherd/version/download/0687F00000AmebCQAR" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:registerEvent name="onload" type="c:frameLoaded"/>
+
+    <div class="slds-hide" >
+        <iframe aura:id="iframe" class="iframe-class" src="{!v.url}"></iframe>
+    </div>
+
+</aura:component>

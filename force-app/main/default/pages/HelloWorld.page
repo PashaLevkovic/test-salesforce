@@ -1,0 +1,9 @@
+<apex:page controller="HelliWorldExtension">
+    <apex:pageBlock title="Extension">
+    	<apex:pageBlockSection columns="1">
+            {! order.Name }
+        	
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+  
+</apex:page>

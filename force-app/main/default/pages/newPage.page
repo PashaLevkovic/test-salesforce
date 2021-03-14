@@ -1,0 +1,10 @@
+<apex:page controller="newPageController">
+    <apex:form >
+    	<apex:pageBlock >
+        <apex:pageBlockSection title="lookup window">
+        	<apex:inputField id="Account" value="{!contact.AccountId}"/>
+        </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+
+</apex:page>
